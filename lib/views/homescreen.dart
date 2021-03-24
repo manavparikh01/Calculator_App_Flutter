@@ -6,8 +6,57 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  void pressedButton(String pressButton) {
-    print(pressButton);
+  String val1 = "";
+  double num1 = 0.0;
+  double num2 = 0.0;
+  String val2 = "";
+  int val1length = 0;
+  bool isOperator = false;
+
+  void pressedButton(String value) {
+    print(value);
+    isOperator = false;
+    if (value == '0') {
+      setState(() {
+        val1 = '0';
+      });
+    } else {
+      setState(() {
+        val1 = val1 + value;
+      });
+    }
+  }
+
+  void pressedSideButton(String value) {
+    print(value);
+    isOperator = true;
+    setState(() {
+      val1 = val1 + value;
+    });
+  }
+
+  void pressedTopButton(String value) {
+    print(value);
+    if (value == 'C') {
+      setState(() {
+        val1 = '';
+      });
+    }
+  }
+
+  void pressedBackButton() {
+    print('<');
+    if (val1 == '') {
+      setState(() {
+        val1 = '';
+      });
+    } else {
+      val1length = val1.length;
+
+      setState(() {
+        val1 = val1.substring(0, val1length - 1);
+      });
+    }
   }
 
   Widget buildButton(String num) {
@@ -49,14 +98,57 @@ class _HomeScreenState extends State<HomeScreen> {
             style: TextStyle(),
           ),
           onPressed: () {
-            pressedButton(sym);
+            pressedSideButton(sym);
           },
         ),
       ),
     );
   }
 
-  Widget buildDivisionButton() {
+  // Widget buildDivisionButton() {
+  //   return Expanded(
+  //     child: Container(
+  //       height: 50,
+  //       padding: EdgeInsets.only(left: 5, right: 5, top: 5, bottom: 0),
+  //       color: Colors.grey[100],
+  //       child: FlatButton(
+  //         shape: RoundedRectangleBorder(
+  //           borderRadius: BorderRadius.circular(10),
+  //         ),
+  //         color: Colors.grey[400],
+  //         child: Text(
+  //           '/',
+  //           style: TextStyle(),
+  //         ),
+  //         onPressed: () {
+  //           pressedButton('/');
+  //         },
+  //       ),
+  //     ),
+  //   );
+  // }
+
+  // Widget buildMultiplicationButton() {
+  //   return Expanded(
+  //     child: Container(
+  //       height: 50,
+  //       padding: EdgeInsets.only(left: 5, right: 5, top: 5, bottom: 0),
+  //       color: Colors.grey[100],
+  //       child: FlatButton(
+  //         shape: RoundedRectangleBorder(
+  //           borderRadius: BorderRadius.circular(10),
+  //         ),
+  //         color: Colors.grey[400],
+  //         child: Text('x'),
+  //         onPressed: () {
+  //           pressedButton('X');
+  //         },
+  //       ),
+  //     ),
+  //   );
+  // }
+
+  Widget buildTopButton(String sym) {
     return Expanded(
       child: Container(
         height: 50,
@@ -68,31 +160,11 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           color: Colors.grey[400],
           child: Text(
-            '/',
+            sym,
             style: TextStyle(),
           ),
           onPressed: () {
-            pressedButton('/');
-          },
-        ),
-      ),
-    );
-  }
-
-  Widget buildMultiplicationButton() {
-    return Expanded(
-      child: Container(
-        height: 50,
-        padding: EdgeInsets.only(left: 5, right: 5, top: 5, bottom: 0),
-        color: Colors.grey[100],
-        child: FlatButton(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10),
-          ),
-          color: Colors.grey[400],
-          child: Text('x'),
-          onPressed: () {
-            pressedButton('X');
+            pressedTopButton(sym);
           },
         ),
       ),
@@ -112,7 +184,7 @@ class _HomeScreenState extends State<HomeScreen> {
           color: Colors.grey[800],
           child: Text(
             sym,
-            style: TextStyle(),
+            style: TextStyle(color: Colors.grey[100]),
           ),
           onPressed: () {
             pressedButton(sym);
@@ -146,6 +218,23 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
+  Widget buildBackButton() {
+    return Expanded(
+      flex: 1,
+      child: Container(
+          child: FlatButton(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+        child: Icon(
+          Icons.arrow_back_ios,
+          size: 20,
+        ),
+        onPressed: () {
+          pressedBackButton();
+        },
+      )),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -161,7 +250,8 @@ class _HomeScreenState extends State<HomeScreen> {
       body: Container(
         child: Column(
           children: <Widget>[
-            Container(
+            AnimatedContainer(
+              duration: Duration(milliseconds: 250),
               width: double.infinity,
               color: Colors.grey[200],
               padding: EdgeInsets.all(20),
@@ -169,12 +259,34 @@ class _HomeScreenState extends State<HomeScreen> {
                       MediaQuery.of(context).padding.top) *
                   0.4255645,
               alignment: Alignment.bottomRight,
-              child: Text(
-                "This a Calcu",
-                style: TextStyle(
-                    color: Colors.black45,
-                    fontSize: 30,
-                    fontWeight: FontWeight.w600),
+              child: Column(
+                children: <Widget>[
+                  Expanded(
+                    flex: 1,
+                    child: AnimatedContainer(
+                      duration: Duration(milliseconds: 250),
+                      alignment: Alignment.bottomRight,
+                      child: Text(val1,
+                          style: isOperator
+                              ? TextStyle(
+                                  color: Colors.black87,
+                                  fontSize: 30,
+                                  fontWeight: FontWeight.w600)
+                              : TextStyle(
+                                  color: Colors.black45,
+                                  fontSize: 30,
+                                  fontWeight: FontWeight.w600)),
+                    ),
+                  ),
+                  Expanded(
+                    flex: 1,
+                    child: AnimatedContainer(
+                      duration: Duration(milliseconds: 250),
+                      alignment: Alignment.bottomRight,
+                      child: Text('This da Calc'),
+                    ),
+                  ),
+                ],
               ),
             ),
             Expanded(
@@ -197,20 +309,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           flex: 3,
                           child: Container(),
                         ),
-                        Expanded(
-                          flex: 1,
-                          child: Container(
-                            child: FlatButton(
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10)),
-                              child: Icon(
-                                Icons.arrow_back_ios,
-                                size: 20,
-                              ),
-                              onPressed: () {},
-                            ),
-                          ),
-                        ),
+                        buildBackButton(),
                         SizedBox(width: 10),
                       ],
                     ),
@@ -221,10 +320,10 @@ class _HomeScreenState extends State<HomeScreen> {
                     child: Row(
                       children: <Widget>[
                         SizedBox(width: 5),
-                        buildButton('C'),
-                        buildButton('()'),
-                        buildButton('%'),
-                        buildDivisionButton(),
+                        buildTopButton('C'),
+                        buildTopButton('()'),
+                        buildTopButton('%'),
+                        buildSideButton('/'),
                         SizedBox(width: 5),
                       ],
                     ),
@@ -236,7 +335,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         buildButton('7'),
                         buildButton('8'),
                         buildButton('9'),
-                        buildMultiplicationButton(),
+                        buildSideButton('x'),
                         SizedBox(width: 5),
                       ],
                     ),
