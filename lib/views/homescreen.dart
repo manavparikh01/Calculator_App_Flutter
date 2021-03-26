@@ -1,3 +1,5 @@
+//import 'dart:html';
+
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -20,84 +22,134 @@ class _HomeScreenState extends State<HomeScreen> {
   bool isEqual = false;
   final snackBar = SnackBar(content: Text('Sorry Under construction'));
   String val3 = "";
+  int val2length = 0;
+  bool isAlreadyPresent = false;
+  bool isOperandBracket = false;
+  bool isOperandModulus = false;
 
   void pressedBackButton() {
     print('<');
     setState(() {
       val3 = '';
     });
+    if (isEqual == true) {
+      if (num3.toString().endsWith('.0')) {
+        setState(() {
+          val1 = num3.toString().substring(0, num3.toString().length - 2);
+        });
+      } else {
+        setState(() {
+          val1 = num3.toString();
+        });
+      }
+      num3 = 0.0;
+      isEqual = false;
+    }
     if (val1 == '') {
       setState(() {
         val1 = '';
       });
     } else {
       val1length = val1.length;
-
-      setState(() {
-        val1 = val1.substring(0, val1length - 1);
-        val2 = val2.substring(0, val1length - 1);
-        num2 = double.tryParse(val2);
-      });
+      val2length = val2.length;
+      if (val2length <= 1) {
+        setState(() {
+          val1 = val1.substring(0, val1length - 1);
+          val2 = '';
+          num2 = 0.0;
+          num3 = 0.0;
+        });
+      } else {
+        if (isOperandPlus == true) {
+          val2 = val2.substring(0, val2length - 1);
+          num2 = double.tryParse(val2);
+          setState(() {
+            val1 = val1.substring(0, val1length - 1);
+            num3 = num1 + num2;
+          });
+        } else if (isOperandMinus == true) {
+          val2 = val2.substring(0, val2length - 1);
+          num2 = double.tryParse(val2);
+          setState(() {
+            val1 = val1.substring(0, val1length - 1);
+            num3 = num1 - num2;
+          });
+        } else if (isOperandMultiply == true) {
+          val2 = val2.substring(0, val2length - 1);
+          num2 = double.tryParse(val2);
+          setState(() {
+            val1 = val1.substring(0, val1length - 1);
+            num3 = num1 * num2;
+          });
+        } else if (isOperandDivision == true) {
+          val2 = val2.substring(0, val2length - 1);
+          num2 = double.tryParse(val2);
+          setState(() {
+            val1 = val1.substring(0, val1length - 1);
+            num3 = num1 / num2;
+          });
+        } else if (isOperandModulus == true) {
+          val2 = val2.substring(0, val2length - 1);
+          num2 = double.tryParse(val2);
+          setState(() {
+            val1 = val1.substring(0, val1length - 1);
+            num3 = num1 % num2;
+          });
+        } else {
+          setState(() {
+            val1 = val1.substring(0, val1length - 1);
+            val2 = val2.substring(0, val2length - 1);
+            num2 = double.tryParse(val2);
+          });
+        }
+      }
     }
   }
 
   void pressedButton(String value) {
     print(value);
     isOperator = false;
-    if (value == '()') {
+    val1length = val1.length;
+    if (val1length == 0) {
       setState(() {
-        val3 = 'Not working Wait for future updates';
-      });
-    } else {
-      setState(() {
-        val3 = '';
-      });
-      if (val1.startsWith('0') && !(val1.contains('.'))) {
-        if (value == '0') {
-          setState(() {
-            val1 = '0';
-          });
-        } else {
-          if (isOperandPlus == true) {
-            val2 = val2 + value;
-            num2 = double.tryParse(val2);
-            setState(() {
-              num3 = num1 + num2;
-            });
-            // print(num1);
-            // print(num2);
-            // print(num3);
-          }
-          if (isOperandMinus == true) {
-            val2 = val2 + value;
-            num2 = double.tryParse(val2);
-            setState(() {
-              num3 = num1 - num2;
-            });
-            // print(num1);
-            // print(num2);
-            // print(num3);
-          }
-          if (isOperandMultiply == true) {
-            val2 = val2 + value;
-            num2 = double.tryParse(val2);
-            setState(() {
-              num3 = num1 * num2;
-            });
-          }
-          if (isOperandDivision == true) {
-            val2 = val2 + value;
-            num2 = double.tryParse(val2);
-            setState(() {
-              num3 = num1 / num2;
-            });
-          }
-          setState(() {
-            val1 = val1 + value;
-            //val2 = val2 + num3.toString();
-          });
+        val1 = "";
+        num1 = 0.0;
+        num2 = 0.0;
+        val2 = "";
+        val1length = 0;
+        isOperator = true;
+        isOperandPlus = false;
+        num3 = 0;
+        isOperandMinus = false;
+        isOperandMultiply = false;
+        isOperandDivision = false;
+        isEqual = false;
+        val3 = "";
+        val2length = 0;
+        if (value == '.') {
+          val1 = '0.';
         }
+      });
+    }
+
+    setState(() {
+      val3 = '';
+    });
+
+    if (val1.startsWith('0') && !(val1.contains('.'))) {
+      if (value == '0') {
+        setState(() {
+          val1 = '0';
+        });
       } else {
+        if (isAlreadyPresent == true) {
+          setState(() {
+            num1 = num3;
+            val2 = '';
+            num2 = 0.0;
+          });
+          isAlreadyPresent = false;
+        }
         if (isOperandPlus == true) {
           val2 = val2 + value;
           num2 = double.tryParse(val2);
@@ -132,52 +184,229 @@ class _HomeScreenState extends State<HomeScreen> {
             num3 = num1 / num2;
           });
         }
+        if (isOperandModulus == true) {
+          val2 = val2 + value;
+          num2 = double.tryParse(val2);
+          setState(() {
+            num3 = num1 % num2;
+          });
+        }
         setState(() {
           val1 = val1 + value;
           //val2 = val2 + num3.toString();
         });
       }
+    } else if (val1.startsWith('0.')) {
+      if (value == '.') {
+        setState(() {
+          val1 = '0.';
+        });
+      } else {
+        if (isAlreadyPresent == true) {
+          setState(() {
+            num1 = num3;
+            val2 = '';
+            num2 = 0.0;
+          });
+          isAlreadyPresent = false;
+        }
+        if (isOperandPlus == true) {
+          val2 = val2 + value;
+          num2 = double.tryParse(val2);
+          setState(() {
+            num3 = num1 + num2;
+          });
+          // print(num1);
+          // print(num2);
+          // print(num3);
+        }
+        if (isOperandMinus == true) {
+          val2 = val2 + value;
+          num2 = double.tryParse(val2);
+          setState(() {
+            num3 = num1 - num2;
+          });
+          // print(num1);
+          // print(num2);
+          // print(num3);
+        }
+        if (isOperandMultiply == true) {
+          val2 = val2 + value;
+          num2 = double.tryParse(val2);
+          setState(() {
+            num3 = num1 * num2;
+          });
+        }
+        if (isOperandDivision == true) {
+          val2 = val2 + value;
+          num2 = double.tryParse(val2);
+          setState(() {
+            num3 = num1 / num2;
+          });
+        }
+        if (isOperandModulus == true) {
+          val2 = val2 + value;
+          num2 = double.tryParse(val2);
+          setState(() {
+            num3 = num1 % num2;
+          });
+        }
+        setState(() {
+          val1 = val1 + value;
+          //val2 = val2 + num3.toString();
+        });
+      }
+    } else {
+      if (isAlreadyPresent == true) {
+        setState(() {
+          num1 = num3;
+          val2 = '';
+          num2 = 0.0;
+          print('hello');
+          print(num1);
+        });
+        isAlreadyPresent = false;
+      }
+      if (isOperandPlus == true) {
+        val2 = val2 + value;
+        num2 = double.tryParse(val2);
+        print(num1);
+        print(num2);
+        print(num3);
+        setState(() {
+          num3 = num1 + num2;
+        });
+        print(num1);
+        print(num2);
+        print(num3);
+      }
+      if (isOperandMinus == true) {
+        val2 = val2 + value;
+        num2 = double.tryParse(val2);
+        setState(() {
+          num3 = num1 - num2;
+        });
+        // print(num1);
+        // print(num2);
+        // print(num3);
+      }
+      if (isOperandMultiply == true) {
+        val2 = val2 + value;
+        num2 = double.tryParse(val2);
+        setState(() {
+          num3 = num1 * num2;
+        });
+      }
+      if (isOperandDivision == true) {
+        val2 = val2 + value;
+        num2 = double.tryParse(val2);
+        setState(() {
+          num3 = num1 / num2;
+        });
+      }
+      if (isOperandModulus == true) {
+        val2 = val2 + value;
+        num2 = double.tryParse(val2);
+        setState(() {
+          num3 = num1 % num2;
+        });
+      }
+      setState(() {
+        val1 = val1 + value;
+        //val2 = val2 + num3.toString();
+      });
     }
   }
 
   void pressedSideButton(String value) {
     print(value);
-    setState(() {
-      val3 = '';
-    });
-    if (value == '+') {
-      isOperandPlus = true;
-      isOperandMinus = false;
-      isOperandMultiply = false;
-      isOperandDivision = false;
-      isEqual = false;
+    if (val1 == '' && num3 == 0.0) {
+    } else {
+      setState(() {
+        val3 = '';
+      });
+      if (val1.substring(val1.length - 1, val1.length) == '+' ||
+          val1.substring(val1.length - 1, val1.length) == '-' ||
+          val1.substring(val1.length - 1, val1.length) == 'x' ||
+          val1.substring(val1.length - 1, val1.length) == '/' ||
+          val1.substring(val1.length - 1, val1.length) == '%') {
+        val1 = val1.substring(0, val1.length - 1);
+      }
+      if (isEqual == true) {
+        if (num3.toString().endsWith('.0')) {
+          setState(() {
+            val1 = num3.toString().substring(0, num3.toString().length - 2);
+            val2 = '';
+            num2 = 0.0;
+            num3 = 0.0;
+          });
+        } else {
+          setState(() {
+            val1 = num3.toString();
+            val2 = '';
+            num2 = 0.0;
+            num3 = 0.0;
+          });
+        }
+      }
+      if (isOperandPlus == true ||
+          isOperandMinus == true ||
+          isOperandMultiply == true ||
+          isOperandDivision == true) {
+        isOperandPlus = false;
+        isOperandMinus = false;
+        isOperandMultiply = false;
+        isOperandDivision = false;
+        isEqual = false;
+        setState(() {
+          val2 = '';
+          num2 = 0.0;
+        });
+        print('iamhere');
+        isAlreadyPresent = true;
+      }
+      if (value == '+') {
+        isOperandPlus = true;
+        isOperandMinus = false;
+        isOperandMultiply = false;
+        isOperandDivision = false;
+        isEqual = false;
+      }
+      if (value == '-') {
+        isOperandMinus = true;
+        isOperandPlus = false;
+        isOperandMultiply = false;
+        isOperandDivision = false;
+        isEqual = false;
+      }
+      if (value == 'x') {
+        isOperandMultiply = true;
+        isOperandPlus = false;
+        isOperandMinus = false;
+        isOperandDivision = false;
+        isEqual = false;
+      }
+      if (value == '/') {
+        isOperandDivision = true;
+        isOperandMultiply = false;
+        isOperandPlus = false;
+        isOperandMinus = false;
+        isEqual = false;
+      }
+      if (value == '%') {
+        isOperandModulus = true;
+        isOperandDivision = false;
+        isOperandMultiply = false;
+        isOperandPlus = false;
+        isOperandMinus = false;
+        isEqual = false;
+      }
+      num1 = double.tryParse(val1);
+      setState(() {
+        val1 = val1 + value;
+      });
+      isOperator = false;
     }
-    if (value == '-') {
-      isOperandMinus = true;
-      isOperandPlus = false;
-      isOperandMultiply = false;
-      isOperandDivision = false;
-      isEqual = false;
-    }
-    if (value == 'x') {
-      isOperandMultiply = true;
-      isOperandPlus = false;
-      isOperandMinus = false;
-      isOperandDivision = false;
-      isEqual = false;
-    }
-    if (value == '/') {
-      isOperandDivision = true;
-      isOperandMultiply = false;
-      isOperandPlus = false;
-      isOperandMinus = false;
-      isEqual = false;
-    }
-    num1 = double.tryParse(val1);
-    setState(() {
-      val1 = val1 + value;
-    });
-    isOperator = false;
   }
 
   void pressedTopButton(String value) {
@@ -196,10 +425,13 @@ class _HomeScreenState extends State<HomeScreen> {
         val3 = '';
       });
     }
-    if (value == '()' || value == '%') {
+    if (value == '()') {
       setState(() {
         val3 = 'Not working Wait for future updates';
       });
+    }
+    if (value == '%') {
+      pressedSideButton('%');
     }
   }
 
@@ -382,10 +614,16 @@ class _HomeScreenState extends State<HomeScreen> {
       child: Container(
           child: FlatButton(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-        child: Icon(
-          Icons.arrow_back_ios,
-          size: 20,
-        ),
+        child: val1 == '' && num3 == 0.0
+            ? Icon(
+                Icons.arrow_back_ios,
+                size: 20,
+                color: Colors.grey[500],
+              )
+            : Icon(
+                Icons.arrow_back_ios,
+                size: 20,
+              ),
         onPressed: () {
           pressedBackButton();
         },
