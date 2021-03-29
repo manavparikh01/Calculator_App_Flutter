@@ -667,6 +667,7 @@ class _HomeScreenState extends State<HomeScreen> {
             : Icon(
                 Icons.arrow_back_ios,
                 size: 20,
+                color: Colors.black,
               ),
         onPressed: () {
           pressedBackButton();
