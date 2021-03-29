@@ -123,6 +123,7 @@ class _HomeScreenState extends State<HomeScreen> {
         isOperandMinus = false;
         isOperandMultiply = false;
         isOperandDivision = false;
+        isOperandModulus = false;
         isEqual = false;
         val3 = "";
         val2length = 0;
@@ -325,12 +326,14 @@ class _HomeScreenState extends State<HomeScreen> {
       setState(() {
         val3 = '';
       });
-      if (val1.substring(val1.length - 1, val1.length) == '+' ||
-          val1.substring(val1.length - 1, val1.length) == '-' ||
-          val1.substring(val1.length - 1, val1.length) == 'x' ||
-          val1.substring(val1.length - 1, val1.length) == '/' ||
-          val1.substring(val1.length - 1, val1.length) == '%') {
-        val1 = val1.substring(0, val1.length - 1);
+      if (isEqual == false) {
+        if (val1.substring(val1.length - 1, val1.length) == '+' ||
+            val1.substring(val1.length - 1, val1.length) == '-' ||
+            val1.substring(val1.length - 1, val1.length) == 'x' ||
+            val1.substring(val1.length - 1, val1.length) == '/' ||
+            val1.substring(val1.length - 1, val1.length) == '%') {
+          val1 = val1.substring(0, val1.length - 1);
+        }
       }
       if (isEqual == true) {
         if (num3.toString().endsWith('.0')) {
@@ -352,11 +355,13 @@ class _HomeScreenState extends State<HomeScreen> {
       if (isOperandPlus == true ||
           isOperandMinus == true ||
           isOperandMultiply == true ||
-          isOperandDivision == true) {
+          isOperandDivision == true ||
+          isOperandModulus == true) {
         isOperandPlus = false;
         isOperandMinus = false;
         isOperandMultiply = false;
         isOperandDivision = false;
+        isOperandModulus = false;
         isEqual = false;
         setState(() {
           val2 = '';
@@ -370,6 +375,7 @@ class _HomeScreenState extends State<HomeScreen> {
         isOperandMinus = false;
         isOperandMultiply = false;
         isOperandDivision = false;
+        isOperandModulus = false;
         isEqual = false;
       }
       if (value == '-') {
@@ -377,6 +383,7 @@ class _HomeScreenState extends State<HomeScreen> {
         isOperandPlus = false;
         isOperandMultiply = false;
         isOperandDivision = false;
+        isOperandModulus = false;
         isEqual = false;
       }
       if (value == 'x') {
@@ -384,6 +391,7 @@ class _HomeScreenState extends State<HomeScreen> {
         isOperandPlus = false;
         isOperandMinus = false;
         isOperandDivision = false;
+        isOperandModulus = false;
         isEqual = false;
       }
       if (value == '/') {
@@ -391,6 +399,7 @@ class _HomeScreenState extends State<HomeScreen> {
         isOperandMultiply = false;
         isOperandPlus = false;
         isOperandMinus = false;
+        isOperandModulus = false;
         isEqual = false;
       }
       if (value == '%') {
@@ -455,14 +464,21 @@ class _HomeScreenState extends State<HomeScreen> {
         height: 50,
         padding: EdgeInsets.only(right: 5, left: 5, top: 5, bottom: 0),
         color: Colors.grey[100],
-        child: FlatButton(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10),
+        child: ElevatedButton(
+          style: ButtonStyle(
+            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+              RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10),
+              ),
+            ),
+            backgroundColor: MaterialStateProperty.all<Color>(Colors.grey[200]),
+            elevation: MaterialStateProperty.all<double>(0),
           ),
-          color: Colors.grey[200],
+
+          //color: Colors.grey[200],
           child: Text(
             num,
-            style: TextStyle(),
+            style: TextStyle(color: Colors.black),
           ),
           onPressed: () {
             pressedButton(num);
@@ -478,14 +494,19 @@ class _HomeScreenState extends State<HomeScreen> {
         height: 50,
         padding: EdgeInsets.only(left: 5, right: 5, top: 5, bottom: 0),
         color: Colors.grey[100],
-        child: FlatButton(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10),
+        child: ElevatedButton(
+          style: ButtonStyle(
+            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+              RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10),
+              ),
+            ),
+            backgroundColor: MaterialStateProperty.all<Color>(Colors.grey[400]),
+            elevation: MaterialStateProperty.all<double>(0),
           ),
-          color: Colors.grey[400],
           child: Text(
             sym,
-            style: TextStyle(),
+            style: TextStyle(color: Colors.black),
           ),
           onPressed: () {
             pressedSideButton(sym);
@@ -544,14 +565,19 @@ class _HomeScreenState extends State<HomeScreen> {
         height: 50,
         padding: EdgeInsets.only(left: 5, right: 5, top: 5, bottom: 0),
         color: Colors.grey[100],
-        child: FlatButton(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10),
+        child: ElevatedButton(
+          style: ButtonStyle(
+            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+              RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10),
+              ),
+            ),
+            backgroundColor: MaterialStateProperty.all<Color>(Colors.grey[400]),
+            elevation: MaterialStateProperty.all<double>(0),
           ),
-          color: Colors.grey[400],
           child: Text(
             sym,
-            style: TextStyle(),
+            style: TextStyle(color: Colors.black),
           ),
           onPressed: () {
             pressedTopButton(sym);
@@ -567,11 +593,16 @@ class _HomeScreenState extends State<HomeScreen> {
         height: 50,
         padding: EdgeInsets.only(left: 5, right: 5, top: 5, bottom: 0),
         color: Colors.grey[100],
-        child: FlatButton(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10),
+        child: ElevatedButton(
+          style: ButtonStyle(
+            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+              RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10),
+              ),
+            ),
+            backgroundColor: MaterialStateProperty.all<Color>(Colors.grey[800]),
+            elevation: MaterialStateProperty.all<double>(0),
           ),
-          color: Colors.grey[800],
           child: Text(
             sym,
             style: TextStyle(color: Colors.grey[100]),
@@ -591,14 +622,19 @@ class _HomeScreenState extends State<HomeScreen> {
         height: 50,
         padding: EdgeInsets.only(right: 5, left: 5, top: 5, bottom: 0),
         color: Colors.grey[100],
-        child: FlatButton(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10),
+        child: ElevatedButton(
+          style: ButtonStyle(
+            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+              RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10),
+              ),
+            ),
+            backgroundColor: MaterialStateProperty.all<Color>(Colors.grey[200]),
+            elevation: MaterialStateProperty.all<double>(0),
           ),
-          color: Colors.grey[200],
           child: Text(
             sys,
-            style: TextStyle(),
+            style: TextStyle(color: Colors.black),
           ),
           onPressed: () {
             pressedButton(sys);
@@ -612,8 +648,16 @@ class _HomeScreenState extends State<HomeScreen> {
     return Expanded(
       flex: 1,
       child: Container(
-          child: FlatButton(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+          child: ElevatedButton(
+        style: ButtonStyle(
+          shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+            RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10),
+            ),
+          ),
+          backgroundColor: MaterialStateProperty.all<Color>(Colors.grey[100]),
+          elevation: MaterialStateProperty.all<double>(0),
+        ),
         child: val1 == '' && num3 == 0.0
             ? Icon(
                 Icons.arrow_back_ios,
@@ -634,20 +678,18 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: Text(
-          'Calculator',
-          style: TextStyle(color: Colors.black26),
-        ),
-        elevation: 0,
-        backgroundColor: Colors.grey[200],
-      ),
+      // appBar: AppBar(
+      //   centerTitle: true,
+      //   title: Text(
+      //     'Calculator',
+      //     style: TextStyle(color: Colors.black26),
+      //   ),
+      //   elevation: 0,
+      //   backgroundColor: Colors.grey[200],
+      // ),
       body: SingleChildScrollView(
         child: Container(
-          height: (MediaQuery.of(context).size.height -
-                  MediaQuery.of(context).padding.top) *
-              0.9256,
+          height: (MediaQuery.of(context).size.height) * 1,
           child: Column(
             children: <Widget>[
               AnimatedContainer(
@@ -657,10 +699,13 @@ class _HomeScreenState extends State<HomeScreen> {
                 padding: EdgeInsets.all(20),
                 height: (MediaQuery.of(context).size.height -
                         MediaQuery.of(context).padding.top) *
-                    0.4255645,
+                    0.5,
                 alignment: Alignment.bottomRight,
                 child: Column(
                   children: <Widget>[
+                    SizedBox(
+                      height: 50,
+                    ),
                     Expanded(
                       flex: isEqual ? 0 : 1,
                       child: AnimatedContainer(
@@ -721,7 +766,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             val3.contains('Not working Wait for future updates')
                                 ? Text(val3,
                                     style: TextStyle(
-                                        fontSize: isEqual ? 20 : 17,
+                                        fontSize: isEqual ? 17 : 17,
                                         color: isEqual
                                             ? Colors.black87
                                             : Colors.black54,
@@ -770,7 +815,7 @@ class _HomeScreenState extends State<HomeScreen> {
               Container(
                 height: (MediaQuery.of(context).size.height -
                         MediaQuery.of(context).padding.top) *
-                    0.5,
+                    0.5367,
                 color: Colors.grey[100],
                 padding: EdgeInsets.symmetric(horizontal: 10),
                 child: Column(
