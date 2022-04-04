@@ -1,4 +1,5 @@
 //import 'dart:html';
+import 'dart:ui';
 
 import 'package:flutter/material.dart';
 
@@ -62,35 +63,35 @@ class _HomeScreenState extends State<HomeScreen> {
       } else {
         if (isOperandPlus == true) {
           val2 = val2.substring(0, val2length - 1);
-          num2 = double.tryParse(val2);
+          num2 = double.tryParse(val2)!;
           setState(() {
             val1 = val1.substring(0, val1length - 1);
             num3 = num1 + num2;
           });
         } else if (isOperandMinus == true) {
           val2 = val2.substring(0, val2length - 1);
-          num2 = double.tryParse(val2);
+          num2 = double.tryParse(val2)!;
           setState(() {
             val1 = val1.substring(0, val1length - 1);
             num3 = num1 - num2;
           });
         } else if (isOperandMultiply == true) {
           val2 = val2.substring(0, val2length - 1);
-          num2 = double.tryParse(val2);
+          num2 = double.tryParse(val2)!;
           setState(() {
             val1 = val1.substring(0, val1length - 1);
             num3 = num1 * num2;
           });
         } else if (isOperandDivision == true) {
           val2 = val2.substring(0, val2length - 1);
-          num2 = double.tryParse(val2);
+          num2 = double.tryParse(val2)!;
           setState(() {
             val1 = val1.substring(0, val1length - 1);
             num3 = num1 / num2;
           });
         } else if (isOperandModulus == true) {
           val2 = val2.substring(0, val2length - 1);
-          num2 = double.tryParse(val2);
+          num2 = double.tryParse(val2)!;
           setState(() {
             val1 = val1.substring(0, val1length - 1);
             num3 = num1 % num2;
@@ -99,7 +100,7 @@ class _HomeScreenState extends State<HomeScreen> {
           setState(() {
             val1 = val1.substring(0, val1length - 1);
             val2 = val2.substring(0, val2length - 1);
-            num2 = double.tryParse(val2);
+            num2 = double.tryParse(val2)!;
           });
         }
       }
@@ -153,7 +154,7 @@ class _HomeScreenState extends State<HomeScreen> {
         }
         if (isOperandPlus == true) {
           val2 = val2 + value;
-          num2 = double.tryParse(val2);
+          num2 = double.tryParse(val2)!;
           setState(() {
             num3 = num1 + num2;
           });
@@ -163,7 +164,7 @@ class _HomeScreenState extends State<HomeScreen> {
         }
         if (isOperandMinus == true) {
           val2 = val2 + value;
-          num2 = double.tryParse(val2);
+          num2 = double.tryParse(val2)!;
           setState(() {
             num3 = num1 - num2;
           });
@@ -173,21 +174,21 @@ class _HomeScreenState extends State<HomeScreen> {
         }
         if (isOperandMultiply == true) {
           val2 = val2 + value;
-          num2 = double.tryParse(val2);
+          num2 = double.tryParse(val2)!;
           setState(() {
             num3 = num1 * num2;
           });
         }
         if (isOperandDivision == true) {
           val2 = val2 + value;
-          num2 = double.tryParse(val2);
+          num2 = double.tryParse(val2)!;
           setState(() {
             num3 = num1 / num2;
           });
         }
         if (isOperandModulus == true) {
           val2 = val2 + value;
-          num2 = double.tryParse(val2);
+          num2 = double.tryParse(val2)!;
           setState(() {
             num3 = num1 % num2;
           });
@@ -213,7 +214,7 @@ class _HomeScreenState extends State<HomeScreen> {
         }
         if (isOperandPlus == true) {
           val2 = val2 + value;
-          num2 = double.tryParse(val2);
+          num2 = double.tryParse(val2)!;
           setState(() {
             num3 = num1 + num2;
           });
@@ -223,7 +224,7 @@ class _HomeScreenState extends State<HomeScreen> {
         }
         if (isOperandMinus == true) {
           val2 = val2 + value;
-          num2 = double.tryParse(val2);
+          num2 = double.tryParse(val2)!;
           setState(() {
             num3 = num1 - num2;
           });
@@ -233,21 +234,21 @@ class _HomeScreenState extends State<HomeScreen> {
         }
         if (isOperandMultiply == true) {
           val2 = val2 + value;
-          num2 = double.tryParse(val2);
+          num2 = double.tryParse(val2)!;
           setState(() {
             num3 = num1 * num2;
           });
         }
         if (isOperandDivision == true) {
           val2 = val2 + value;
-          num2 = double.tryParse(val2);
+          num2 = double.tryParse(val2)!;
           setState(() {
             num3 = num1 / num2;
           });
         }
         if (isOperandModulus == true) {
           val2 = val2 + value;
-          num2 = double.tryParse(val2);
+          num2 = double.tryParse(val2)!;
           setState(() {
             num3 = num1 % num2;
           });
@@ -270,7 +271,7 @@ class _HomeScreenState extends State<HomeScreen> {
       }
       if (isOperandPlus == true) {
         val2 = val2 + value;
-        num2 = double.tryParse(val2);
+        num2 = double.tryParse(val2)!;
         print(num1);
         print(num2);
         print(num3);
@@ -283,7 +284,7 @@ class _HomeScreenState extends State<HomeScreen> {
       }
       if (isOperandMinus == true) {
         val2 = val2 + value;
-        num2 = double.tryParse(val2);
+        num2 = double.tryParse(val2)!;
         setState(() {
           num3 = num1 - num2;
         });
@@ -293,21 +294,21 @@ class _HomeScreenState extends State<HomeScreen> {
       }
       if (isOperandMultiply == true) {
         val2 = val2 + value;
-        num2 = double.tryParse(val2);
+        num2 = double.tryParse(val2)!;
         setState(() {
           num3 = num1 * num2;
         });
       }
       if (isOperandDivision == true) {
         val2 = val2 + value;
-        num2 = double.tryParse(val2);
+        num2 = double.tryParse(val2)!;
         setState(() {
           num3 = num1 / num2;
         });
       }
       if (isOperandModulus == true) {
         val2 = val2 + value;
-        num2 = double.tryParse(val2);
+        num2 = double.tryParse(val2)!;
         setState(() {
           num3 = num1 % num2;
         });
@@ -410,7 +411,7 @@ class _HomeScreenState extends State<HomeScreen> {
         isOperandMinus = false;
         isEqual = false;
       }
-      num1 = double.tryParse(val1);
+      num1 = double.tryParse(val1)!;
       setState(() {
         val1 = val1 + value;
       });
@@ -471,7 +472,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 borderRadius: BorderRadius.circular(10),
               ),
             ),
-            backgroundColor: MaterialStateProperty.all<Color>(Colors.grey[200]),
+            backgroundColor:
+                MaterialStateProperty.all<Color>(Colors.grey.withOpacity(0.6)),
             elevation: MaterialStateProperty.all<double>(0),
           ),
 
@@ -501,7 +503,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 borderRadius: BorderRadius.circular(10),
               ),
             ),
-            backgroundColor: MaterialStateProperty.all<Color>(Colors.grey[400]),
+            backgroundColor:
+                MaterialStateProperty.all<Color>(Colors.grey.withOpacity(0.8)),
             elevation: MaterialStateProperty.all<double>(0),
           ),
           child: Text(
@@ -572,7 +575,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 borderRadius: BorderRadius.circular(10),
               ),
             ),
-            backgroundColor: MaterialStateProperty.all<Color>(Colors.grey[400]),
+            backgroundColor:
+                MaterialStateProperty.all<Color>(Colors.grey.withOpacity(0.8)),
             elevation: MaterialStateProperty.all<double>(0),
           ),
           child: Text(
@@ -600,7 +604,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 borderRadius: BorderRadius.circular(10),
               ),
             ),
-            backgroundColor: MaterialStateProperty.all<Color>(Colors.grey[800]),
+            backgroundColor:
+                MaterialStateProperty.all<Color>(Colors.grey.withOpacity(0.8)),
             elevation: MaterialStateProperty.all<double>(0),
           ),
           child: Text(
@@ -629,7 +634,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 borderRadius: BorderRadius.circular(10),
               ),
             ),
-            backgroundColor: MaterialStateProperty.all<Color>(Colors.grey[200]),
+            backgroundColor:
+                MaterialStateProperty.all<Color>(Colors.grey.withOpacity(0.6)),
             elevation: MaterialStateProperty.all<double>(0),
           ),
           child: Text(
@@ -655,7 +661,8 @@ class _HomeScreenState extends State<HomeScreen> {
               borderRadius: BorderRadius.circular(10),
             ),
           ),
-          backgroundColor: MaterialStateProperty.all<Color>(Colors.grey[100]),
+          backgroundColor:
+              MaterialStateProperty.all<Color>(Colors.grey.withOpacity(0.4)),
           elevation: MaterialStateProperty.all<double>(0),
         ),
         child: val1 == '' && num3 == 0.0
@@ -709,95 +716,107 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                     Expanded(
                       flex: isEqual ? 0 : 1,
-                      child: AnimatedContainer(
-                        duration: Duration(milliseconds: 1000),
-                        alignment: Alignment.bottomRight,
-                        padding: EdgeInsets.only(bottom: 10),
-                        child: Text(val1,
-                            // style: isOperator
-                            //     ? TextStyle(
-                            //         color: Colors.black87,
-                            //         fontSize: 30,
-                            //         fontWeight: FontWeight.w600)
-                            //     : TextStyle(
-                            //         color: Colors.black45,
-                            //         fontSize: 30,
-                            //         fontWeight: FontWeight.w600)),
-                            style: val1 != ''
-                                ? val1.length > 2
-                                    ? val1.substring(val1.length - 1,
-                                                    val1.length) ==
-                                                '%' ||
-                                            val1.substring(val1.length - 1,
-                                                    val1.length) ==
-                                                '/' ||
-                                            val1.substring(val1.length - 1,
-                                                    val1.length) ==
-                                                'x' ||
-                                            val1.substring(val1.length - 1,
-                                                    val1.length) ==
-                                                '+' ||
-                                            val1.substring(val1.length - 1,
-                                                    val1.length) ==
-                                                '-'
-                                        ? TextStyle(
-                                            color: Colors.black87,
-                                            fontSize: 30,
-                                            fontWeight: FontWeight.w600)
-                                        : TextStyle(
-                                            color: Colors.black45,
-                                            fontSize: 30,
-                                            fontWeight: FontWeight.w600)
-                                    : TextStyle(
-                                        color: Colors.black45,
-                                        fontSize: 30,
-                                        fontWeight: FontWeight.w600)
-                                : TextStyle(
-                                    color: Colors.black45,
-                                    fontSize: 30,
-                                    fontWeight: FontWeight.w600)),
+                      child: SingleChildScrollView(
+                        child: AnimatedContainer(
+                          duration: Duration(milliseconds: 1000),
+                          alignment: Alignment.bottomRight,
+                          padding: EdgeInsets.only(bottom: 10),
+                          child: Text(val1,
+                              // style: isOperator
+                              //     ? TextStyle(
+                              //         color: Colors.black87,
+                              //         fontSize: 30,
+                              //         fontWeight: FontWeight.w600)
+                              //     : TextStyle(
+                              //         color: Colors.black45,
+                              //         fontSize: 30,
+                              //         fontWeight: FontWeight.w600)),
+                              style: val1 != ''
+                                  ? val1.length > 2
+                                      ? val1.substring(val1.length - 1,
+                                                      val1.length) ==
+                                                  '%' ||
+                                              val1.substring(val1.length - 1,
+                                                      val1.length) ==
+                                                  '/' ||
+                                              val1.substring(val1.length - 1,
+                                                      val1.length) ==
+                                                  'x' ||
+                                              val1.substring(val1.length - 1,
+                                                      val1.length) ==
+                                                  '+' ||
+                                              val1.substring(val1.length - 1,
+                                                      val1.length) ==
+                                                  '-'
+                                          ? TextStyle(
+                                              color: Colors.black87,
+                                              fontSize: 30,
+                                              fontWeight: FontWeight.w600)
+                                          : TextStyle(
+                                              color: Colors.black45,
+                                              fontSize: 30,
+                                              fontWeight: FontWeight.w600)
+                                      : TextStyle(
+                                          color: Colors.black45,
+                                          fontSize: 30,
+                                          fontWeight: FontWeight.w600)
+                                  : TextStyle(
+                                      color: Colors.black45,
+                                      fontSize: 30,
+                                      fontWeight: FontWeight.w600)),
+                        ),
                       ),
                     ),
                     Expanded(
-                      flex: 1,
-                      child: AnimatedContainer(
-                        duration: Duration(milliseconds: 1000),
-                        alignment: Alignment.bottomRight,
-                        child:
-                            val3.contains('Not working Wait for future updates')
-                                ? Text(val3,
-                                    style: TextStyle(
-                                        fontSize: isEqual ? 17 : 17,
-                                        color: isEqual
-                                            ? Colors.black87
-                                            : Colors.black54,
-                                        fontWeight: isEqual
-                                            ? FontWeight.w400
-                                            : FontWeight.normal))
-                                //? Scaffold.of(context).showSnackBar(snackBar)
-                                : num3 == 0.0
-                                    ? Text('')
-                                    : num3.toString().endsWith('.0')
-                                        ? Text(
-                                            num3.toString().substring(
-                                                0, num3.toString().length - 2),
-                                            style: TextStyle(
-                                                fontSize: isEqual ? 40 : 20,
-                                                color: isEqual
-                                                    ? Colors.black87
-                                                    : Colors.black54,
-                                                fontWeight: isEqual
-                                                    ? FontWeight.w400
-                                                    : FontWeight.normal))
-                                        : Text(num3.toStringAsFixed(2),
-                                            style: TextStyle(
-                                                fontSize: isEqual ? 40 : 20,
-                                                color: isEqual
-                                                    ? Colors.black87
-                                                    : Colors.black54,
-                                                fontWeight: isEqual
-                                                    ? FontWeight.w400
-                                                    : FontWeight.normal)),
+                      flex: isEqual ? 2 : 1,
+                      child: SingleChildScrollView(
+                        child: AnimatedContainer(
+                          duration: Duration(milliseconds: 1000),
+                          alignment: Alignment.bottomRight,
+                          child: val3.contains(
+                                  'Not working Wait for future updates')
+                              ? Text(val3,
+                                  style: TextStyle(
+                                      fontSize: isEqual ? 17 : 17,
+                                      color: isEqual
+                                          ? Colors.black87
+                                          : Colors.black54,
+                                      fontWeight: isEqual
+                                          ? FontWeight.w400
+                                          : FontWeight.normal))
+                              //? Scaffold.of(context).showSnackBar(snackBar)
+                              : num3 == 0.0
+                                  ? Text(num3.toString().substring(0, 1),
+                                      style: TextStyle(
+                                          fontSize: isEqual ? 40 : 20,
+                                          color: isEqual
+                                              ? Colors.black87
+                                              : Colors.black54,
+                                          fontWeight: isEqual
+                                              ? FontWeight.w400
+                                              : FontWeight.normal))
+                                  : num3.toString().endsWith('.0')
+                                      ? Text(
+                                          num3.toString().substring(
+                                              0, num3.toString().length - 2),
+                                          style: TextStyle(
+                                              fontSize: isEqual ? 40 : 20,
+                                              color: isEqual
+                                                  ? Colors.black87
+                                                  : Colors.black54,
+                                              fontWeight: isEqual
+                                                  ? FontWeight.w400
+                                                  : FontWeight.normal))
+                                      : Text(num3.toStringAsFixed(2),
+                                          style: TextStyle(
+                                              fontSize: isEqual ? 40 : 20,
+                                              color: isEqual
+                                                  ? Colors.black87
+                                                  : Colors.black54,
+                                              fontWeight: isEqual
+                                                  ? FontWeight.w400
+                                                  : FontWeight.normal)),
+                        ),
                       ),
                     ),
                     Expanded(
